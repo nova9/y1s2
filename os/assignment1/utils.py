@@ -7,4 +7,4 @@ from pygments.lexers import PythonLexer
 
 
 def pprint_color(obj: Any) -> None:
-    print(highlight(pformat(obj, compact=True), PythonLexer(), Terminal256Formatter()), end="")
+    print(highlight(pformat(obj, compact=True, sort_dicts=False), PythonLexer(), Terminal256Formatter()), end="")

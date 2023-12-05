@@ -1,4 +1,4 @@
-# from utils import pprint_color
+from utils import pprint_color
 
 MEM_SIZE = 100
 
@@ -58,10 +58,12 @@ def halt(opr):
 
 def runm():
     while reg['halt'] == False:
-        i = reg['pc']
+        # address of the currently runnning command
+        i = reg['pc'] # 0 at the begining
+        # gets the function name that has to run
         op = globals()[memory[i][0]]
+        # run the command
         op(memory[i][1:])
-        pass
 
         reg['timer'] = reg['timer']-1
         if reg['int'] == 1 and reg['timer'] == 0:
@@ -71,9 +73,15 @@ def runm():
             reg['int'] = 0
 
 
+        pprint_color(memory[i])
+        pprint_color(reg)
+
+
 if __name__ == '__main__':
+    # commands are loaded to the memory
     with open('ass-1.asm', 'r') as file:
         for line in file:
+            # comment lines are ignored
             if line.startswith("#"):
                 continue
 
@@ -82,7 +90,9 @@ if __name__ == '__main__':
             if command:
                 memory[int(command[0])] = command[1:]
 
+    # pprint_color(memory)
+
     runm()
 
-    print(reg)
-    print(memory)
+    pprint_color(reg)
+    pprint_color(memory)
