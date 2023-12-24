@@ -20,12 +20,12 @@ reg = {
 
 memory = [0]*MEM_SIZE
 
-
+# mov dest src
 def mov(opr: list):
     reg[opr[0]] = reg[opr[1]]
     reg['pc'] = reg['pc']+1
 
-
+# movv sp 80
 def movv(opr: list):
     reg[opr[0]] = int(opr[1])
     reg['pc'] = reg['pc']+1
@@ -35,17 +35,17 @@ def load(opr: list):
     reg[opr[0]] = memory[int(opr[1])]
     reg['pc'] = reg['pc']+1
 
-
+# loadr b acc: load to b from memory using the address in acc
 def loadr(opr: list):
     reg[opr[0]] = memory[reg[opr[1]]]
     reg['pc'] = reg['pc']+1
 
-
+# store 100 acc
 def store(opr: list):
     memory[int(opr[0])] = reg[opr[1]]
     reg['pc'] = reg['pc']+1
 
-
+# storer acc b
 def storer(opr: list):
     memory[reg[opr[0]]] = reg[opr[1]]
     reg['pc'] = reg['pc']+1
@@ -97,7 +97,7 @@ def pop(opr: list):
 def jmp(opr: list):
     reg['pc'] = int(opr[0])
 
-
+# jnz 20 a
 def jnz(opr: list):
     if reg[opr[1]] != 0:
         reg['pc'] = int(opr[0])
@@ -124,6 +124,11 @@ def runm():
             reg['pc'] = reg['ivec']
             reg['int'] = 0
 
+        pprint_color(memory[i])
+        pprint_color(reg)
+        pprint_color(memory)
+        # input()
+
 
 if __name__ == "__main__":
     with open('ass-3.asm', 'r') as f:
@@ -136,3 +141,5 @@ if __name__ == "__main__":
                 memory[int(comm[0])] = comm[1:]
 
     runm()
+    print(reg)
+    print(memory)

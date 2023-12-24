@@ -14,10 +14,10 @@
 
 
 
-20 
-21 
-22 
-23 
+20 push a
+21 push b
+22 push c
+23 push acc
 24 mov c sp
 25 movv a 5
 26 sub c a
