@@ -60,7 +60,6 @@ int main()
   root->right = createNode(3);
   root->left->left = createNode(4);
   root->left->right = createNode(5);
-  root->left->left->left = createNode(7);
 
   printf("Height %d\n", height(root));
   printf("Balanced %d\n", isBalanced(root));
