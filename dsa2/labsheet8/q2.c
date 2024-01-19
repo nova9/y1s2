@@ -41,8 +41,15 @@ bool isBalanced(Node *root)
   int lh = height(root->left);
   int rh = height(root->right);
 
-  bool l = isBalanced(root->left);
-  bool r = isBalanced(root->right);
+  if (abs(lh - rh) > 1)
+  {
+    return 0;
+  }
+
+  bool lb = isBalanced(root->left);
+  bool rb = isBalanced(root->right);
+
+  return lb && rb;
 }
 
 int main()
@@ -53,6 +60,8 @@ int main()
   root->right = createNode(3);
   root->left->left = createNode(4);
   root->left->right = createNode(5);
+  root->left->left->left = createNode(7);
 
   printf("Height %d\n", height(root));
+  printf("Balanced %d\n", isBalanced(root));
 }
