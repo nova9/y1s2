@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++11
 TARGET = main
 
 # Source files
-SRCS = main.cpp
+SRCS = main.cpp graph.cpp
 
 
 compile: $(SRCS)
@@ -19,5 +19,5 @@ clean:
 	rm -f $(OBJS) $(TARGET)
 
 
-run: $(TARGET)
+run: compile
 	./$(TARGET)

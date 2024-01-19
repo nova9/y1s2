@@ -1,4 +1,4 @@
-from utils import printc, printt
+# from utils import printc, printt
 
 MEM_SIZE = 100
 
@@ -68,8 +68,11 @@ def mod(opr):
 
 
 def call(opr):
+    # move the top
     reg['sp'] = reg['sp']+1
+    # store program couter + 1 in the stack
     memory[reg['sp']] = reg['pc']+1
+    # store opr[0] in the pc to run next
     reg['pc'] = int(opr[0])
 
 
@@ -145,5 +148,5 @@ if __name__ == '__main__':
 
         runm()
 
-        printc(reg)
-        printc(memory)
+        print(reg)
+        print(memory)
