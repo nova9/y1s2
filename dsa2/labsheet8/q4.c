@@ -31,7 +31,7 @@ int height(Node *root)
 }
 
 int balanceFactor(Node *root){
-  return height(root->left - root->right);
+  return height(root->left) - height(root->right);
 }
 
 Node *insert(Node *root, int key)
@@ -53,6 +53,10 @@ Node *insert(Node *root, int key)
 
   int bf = balanceFactor(root);
 
+  if (abs(bf) > 1) {
+    printf("%d not balanced %d\n", root->key, bf);
+  }
+
   return root;
 }
 
@@ -73,6 +77,8 @@ int main()
   Node *root = NULL;
   root = insert(root, 2);
   root = insert(root, 3);
+  root = insert(root, 4);
+  root = insert(root, 1);
 
   inorder(root);
 }
